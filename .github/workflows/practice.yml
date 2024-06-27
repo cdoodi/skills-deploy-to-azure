@@ -24,7 +24,11 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world! {{ vars.test_var }}
+        run: |
+          echo Hello, world! ${{ vars.test_var }}
+          echo Hello 2: $TEST_VAR
+        env:
+         TEST_VAR : ${{ vars.test_var }}
       - name: Print env
         run: env
 
