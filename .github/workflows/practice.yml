@@ -26,9 +26,12 @@ jobs:
       - name: Run a one-line script
         run: |
           echo Hello, world! ${{ vars.test_var }}
+          echo Hello seceret: ${{ secrets.AZURE_CLIENT_ID }}
+          echo Hello secret 2: $CLIENT_ID
           echo Hello 2: $TEST_VAR
         env:
-         TEST_VAR : ${{ vars.test_var }}
+         TEST_VAR: ${{ vars.test_var }}
+         CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       - name: Print env
         run: env
 
