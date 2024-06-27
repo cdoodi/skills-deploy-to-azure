@@ -3,7 +3,7 @@ name: Deploy to production
 on:
   push:
     branches:
-      - main
+      - release
 
 env:
   IMAGE_REGISTRY_URL: ghcr.io
