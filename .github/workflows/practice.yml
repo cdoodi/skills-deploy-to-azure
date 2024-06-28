@@ -54,5 +54,4 @@ jobs:
       id: bad
       continue-on-error: true
     - run: echo "OK"
-      if: job.steps.bad.status == success()
-    
+      if: job.steps.bad.outcome == 'failure'    
