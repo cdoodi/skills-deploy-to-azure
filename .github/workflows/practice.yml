@@ -29,6 +29,8 @@ jobs:
   job2:
     runs-on: ubuntu-latest
     needs: job1
+    env:
+     TEST_ENV: ${{ secrets.AZURE_TEST }}
     steps:
      
         - run: echo "$OUTPUT1 $OUTPUT2"
@@ -39,7 +41,7 @@ jobs:
           run: echo "::error file=app.js,line=1::Missing semicolon"
         - name: Testing debug
           run: echo "::debug::Set the Octocat variable"
-        - if: ${{ secrets.AZURE_TEST }} != ''
+        - if: $ {{ env.TEST_ENV != '')
           name: print environment
           run: env
     
