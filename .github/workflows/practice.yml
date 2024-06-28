@@ -16,6 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   job1:
+    if: ${{ 1 == 0 }}
     runs-on: ubuntu-latest
     # Map a step output to a job output
     outputs:
@@ -28,6 +29,7 @@ jobs:
         run: echo "test=world" >> "$GITHUB_OUTPUT"
   job2:
     runs-on: ubuntu-latest
+    if: ${{ 1 == 0 }}
     needs: job1
     env:
      TEST_ENV: ${{ secrets.AZURE_CREDENTIALS }}
@@ -44,4 +46,13 @@ jobs:
         - if: ${{ env.TEST_ENV != '' }}
           name: print environment
           run: env
+  job3:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "Test"
+    - run: exit 1
+      id: bad
+      continue-on-error: true
+    - run: echo "OK"
+      if: job.steps.bad.status == failure()
     
