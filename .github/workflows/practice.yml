@@ -40,5 +40,6 @@ jobs:
         - name: Testing debug
           run: echo "::debug::Set the Octocat variable"
         - name: print environment
+          if: ${{ secrets.AZURE_TEST != '' }}
           run: env
     
