@@ -37,4 +37,6 @@ jobs:
            OUTPUT2: ${{needs.job1.outputs.output2}}
         - name: Create annotation for build error
           run: echo "::error file=app.js,line=1::Missing semicolon"
+        - name: Testing debug
+          run: echo "::debug::Set the Octocat variable"
     
