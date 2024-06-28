@@ -41,7 +41,7 @@ jobs:
           run: echo "::error file=app.js,line=1::Missing semicolon"
         - name: Testing debug
           run: echo "::debug::Set the Octocat variable"
-        - if: ${{ secrets.TEST_ENV != '' }}
+        - if: ${{ env.TEST_ENV != '' }}
           name: print environment
           run: env
     
